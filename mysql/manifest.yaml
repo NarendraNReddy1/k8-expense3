@@ -1,8 +1,51 @@
+# kind: Deployment
+# apiVersion: apps/v1
+# metadata:
+#   name: mysql
+#   namespace: expense
+#   # these labels are deployment related labels
+#   labels:
+#     component: mysql
+#     project: expense
+#     tier: db
+# spec:
+#   replicas: 2
+#   selector:
+#     matchLabels:
+#       component: mysql
+#       project: expense
+#       tier: db
+#   # pod definition
+#   template:
+#     metadata:
+#       labels:
+#         component: mysql
+#         project: expense
+#         tier: db
+#     spec:
+#       containers:
+#       - name: mysql
+#         image: narendranreddy/mysql:v1.0
+# ---
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name: mysql
+#   namespace: expense 
+# spec:
+#   selector:
+#     component: mysql
+#     project: expense
+#     tier: db
+#   ports:
+#   - protocol: TCP
+#     port: 3306
+#     targetPort: 3306
+
 kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: mysql
-  namespace: expense
   # these labels are deployment related labels
   labels:
     component: mysql
@@ -26,18 +69,3 @@ spec:
       containers:
       - name: mysql
         image: narendranreddy/mysql:v1.0
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: mysql
-  namespace: expense 
-spec:
-  selector:
-    component: mysql
-    project: expense
-    tier: db
-  ports:
-  - protocol: TCP
-    port: 3306
-    targetPort: 3306
