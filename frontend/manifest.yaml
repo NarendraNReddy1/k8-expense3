@@ -24,9 +24,9 @@ spec:
       containers:
       - name: frontend
         image: narendranreddy/frontend:v1.0   
-        envFrom:
-        - configMapRef:
-            name: frontend
+        # envFrom:
+        # - configMapRef:
+        #     name: frontend
 ---
 kind: Service
 apiVersion: v1
